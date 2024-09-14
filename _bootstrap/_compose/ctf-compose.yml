@@ -1,0 +1,70 @@
+services:
+  ctf1:
+    image: aktivehatex/quakelive-docker-server:latest
+    restart: always
+    ports:
+      - '27978:27978/udp' # game port
+      - '27978:27978/tcp' # stats port
+      - '28978:28978' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27978
+      - ZMQ_RCON_PORT=27978
+      - ZMQ_STATS_PORT=28978
+      - 'SV_HOSTNAME=[CTF] [#1] by twitch.tv/AktiveHateX'
+      - SV_TAGS=ctf, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map scornforge stdctf
+      - SV_MAXCLIENTS=20
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/ctf/ctf.factories:/home/steam/ql/baseq3/scripts/ctf.factories'
+      - './../../mappools/standard/ctf/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/ctf/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5
+
+  ctf2:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27979:27979/udp' # game port
+      - '27979:27979/tcp' # stats port
+      - '28979:28979' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27979
+      - ZMQ_RCON_PORT=27979
+      - ZMQ_STATS_PORT=28979
+      - 'SV_HOSTNAME=[CTF] [#2] by twitch.tv/AktiveHateX'
+      - SV_TAGS=ctf, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map scornforge stdctf
+      - SV_MAXCLIENTS=20
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/ctf/ctf.factories:/home/steam/ql/baseq3/scripts/ctf.factories'
+      - './../../mappools/standard/ctf/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/ctf/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5

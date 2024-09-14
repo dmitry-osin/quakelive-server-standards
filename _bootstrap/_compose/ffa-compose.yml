@@ -1,0 +1,70 @@
+services:
+  ffa1:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27974:27974/udp' # game port
+      - '27974:27974/tcp' # stats port
+      - '28974:28974' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27974
+      - ZMQ_RCON_PORT=27974
+      - ZMQ_STATS_PORT=28974
+      - 'SV_HOSTNAME=[FFA] [#1] by twitch.tv/AktiveHateX'
+      - SV_TAGS=ffa, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map almostlost stdffa
+      - SV_MAXCLIENTS=20
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/ffa/ffa.factories:/home/steam/ql/baseq3/scripts/ffa.factories'
+      - './../../mappools/standard/ffa/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/ffa/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5
+
+  ffa2:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27975:27975/udp' # game port
+      - '27975:27975/tcp' # stats port
+      - '28975:28975' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27975
+      - ZMQ_RCON_PORT=27975
+      - ZMQ_STATS_PORT=28975
+      - 'SV_HOSTNAME=[FFA] [#2] by twitch.tv/AktiveHateX'
+      - SV_TAGS=ffa, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map almostlost stdffa
+      - SV_MAXCLIENTS=20
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/ffa/ffa.factories:/home/steam/ql/baseq3/scripts/ffa.factories'
+      - './../../mappools/standard/ffa/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/ffa/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5

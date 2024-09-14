@@ -1,0 +1,105 @@
+services:
+  ca1:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27963:27963/udp' # game port
+      - '27963:27963/tcp' # stats port
+      - '28963:28963' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27963
+      - ZMQ_RCON_PORT=27963
+      - ZMQ_STATS_PORT=28963
+      - 'SV_HOSTNAME=[CA] [#1] by twitch.tv/AktiveHateX'
+      - SV_TAGS=clan arena, ca, aktivehatex, moscow, russia
+      - SERVERSTARTUP=map campgrounds hoq_ca
+      - SV_MAXCLIENTS=20
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/ca/ca.factories:/home/steam/ql/baseq3/scripts/ca.factories'
+      - './../../mappools/standard/ca/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/ca/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5
+
+  ca2:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27964:27964/udp' # game port
+      - '27964:27964/tcp' # stats port
+      - '28964:28964' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27964
+      - ZMQ_RCON_PORT=27964
+      - ZMQ_STATS_PORT=28964
+      - 'SV_HOSTNAME=[CA] [#2] by twitch.tv/AktiveHateX'
+      - SV_TAGS=clan arena, ca, aktivehatex, moscow, russia
+      - SERVERSTARTUP=map campgrounds hoq_ca
+      - SV_MAXCLIENTS=20
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/ca/ca.factories:/home/steam/ql/baseq3/scripts/ca.factories'
+      - './../../mappools/standard/ca/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/ca/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5
+
+  ca3:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27965:27965/udp' # game port
+      - '27965:27965/tcp' # stats port
+      - '28965:28965' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27965
+      - ZMQ_RCON_PORT=27965
+      - ZMQ_STATS_PORT=28965
+      - 'SV_HOSTNAME=[CA] [#3] by twitch.tv/AktiveHateX'
+      - SV_TAGS=clan arena, ca, aktivehatex, moscow, russia
+      - SERVERSTARTUP=map campgrounds hoq_ca
+      - SV_MAXCLIENTS=20
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/ca/ca.factories:/home/steam/ql/baseq3/scripts/ca.factories'
+      - './../../mappools/standard/ca/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/ca/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5

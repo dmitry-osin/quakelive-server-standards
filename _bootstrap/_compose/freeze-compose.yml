@@ -1,0 +1,70 @@
+services:
+  freeze1:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27976:27976/udp' # game port
+      - '27976:27976/tcp' # stats port
+      - '28976:28976' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27976
+      - ZMQ_RCON_PORT=27976
+      - ZMQ_STATS_PORT=28976
+      - 'SV_HOSTNAME=[Freeze] [#1] by twitch.tv/AktiveHateX'
+      - SV_TAGS=freeze, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map almostlost freeze
+      - SV_MAXCLIENTS=20
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/freeze/freeze.factories:/home/steam/ql/baseq3/scripts/freeze.factories'
+      - './../../mappools/standard/freeze/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/freeze/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5
+
+  freeze2:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27977:27977/udp' # game port
+      - '27977:27977/tcp' # stats port
+      - '28977:28977' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27977
+      - ZMQ_RCON_PORT=27977
+      - ZMQ_STATS_PORT=28977
+      - 'SV_HOSTNAME=[Freeze] [#2] by twitch.tv/AktiveHateX'
+      - SV_TAGS=freeze, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map almostlost freeze
+      - SV_MAXCLIENTS=20
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/freeze/freeze.factories:/home/steam/ql/baseq3/scripts/freeze.factories'
+      - './../../mappools/standard/freeze/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/freeze/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5

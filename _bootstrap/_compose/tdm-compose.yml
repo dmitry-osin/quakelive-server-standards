@@ -1,0 +1,140 @@
+services:
+  tdm1:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27970:27970/udp' # game port
+      - '27970:27970/tcp' # stats port
+      - '28970:28970' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27970
+      - ZMQ_RCON_PORT=27970
+      - ZMQ_STATS_PORT=28970
+      - 'SV_HOSTNAME=[TDM] [#1] by twitch.tv/AktiveHateX'
+      - SV_TAGS=tdm, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map bloodrun hoq_tdm
+      - SV_MAXCLIENTS=20
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/tdm/tdm.factories:/home/steam/ql/baseq3/scripts/tdm.factories'
+      - './../../mappools/standard/tdm/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/tdm/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5
+
+  tdm2:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27971:27971/udp' # game port
+      - '27971:27971/tcp' # stats port
+      - '28971:28971' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27971
+      - ZMQ_RCON_PORT=27971
+      - ZMQ_STATS_PORT=28971
+      - 'SV_HOSTNAME=[TDM] [#2] by twitch.tv/AktiveHateX'
+      - SV_TAGS=tdm, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map bloodrun hoq_tdm
+      - SV_MAXCLIENTS=20
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/tdm/tdm.factories:/home/steam/ql/baseq3/scripts/tdm.factories'
+      - './../../mappools/standard/tdm/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/tdm/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5
+
+  tdm3:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27972:27972/udp' # game port
+      - '27972:27972/tcp' # stats port
+      - '28972:28972' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27972
+      - ZMQ_RCON_PORT=27972
+      - ZMQ_STATS_PORT=28972
+      - 'SV_HOSTNAME=[TDM] [#3] by twitch.tv/AktiveHateX'
+      - SV_TAGS=tdm, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map bloodrun hoq_tdm
+      - SV_MAXCLIENTS=20
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/tdm/tdm.factories:/home/steam/ql/baseq3/scripts/tdm.factories'
+      - './../../mappools/standard/tdm/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/tdm/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5
+
+  tdm4:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27973:27973/udp' # game port
+      - '27973:27973/tcp' # stats port
+      - '28973:28973' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27973
+      - ZMQ_RCON_PORT=27973
+      - ZMQ_STATS_PORT=28973
+      - 'SV_HOSTNAME=[TDM] [#4] by twitch.tv/AktiveHateX'
+      - SV_TAGS=tdm, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map bloodrun hoq_tdm
+      - SV_MAXCLIENTS=20
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/tdm/tdm.factories:/home/steam/ql/baseq3/scripts/tdm.factories'
+      - './../../mappools/standard/tdm/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/tdm/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5

@@ -1,0 +1,140 @@
+services:
+  duel1:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27966:27966/udp' # game port
+      - '27966:27966/tcp' # stats port
+      - '28966:28966' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27966
+      - ZMQ_RCON_PORT=27966
+      - ZMQ_STATS_PORT=28966
+      - 'SV_HOSTNAME=[Duel] [#1] by twitch.tv/AktiveHateX'
+      - SV_TAGS=duel, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map bloodrun duel
+      - SV_MAXCLIENTS=16
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/duel/duel.factories:/home/steam/ql/baseq3/scripts/duel.factories'
+      - './../../mappools/standard/duel/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/duel/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5
+
+  duel2:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27967:27967/udp' # game port
+      - '27967:27967/tcp' # stats port
+      - '28967:28967' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27967
+      - ZMQ_RCON_PORT=27967
+      - ZMQ_STATS_PORT=28967
+      - 'SV_HOSTNAME=[Duel] [#2] by twitch.tv/AktiveHateX'
+      - SV_TAGS=duel, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map bloodrun duel
+      - SV_MAXCLIENTS=16
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/duel/duel.factories:/home/steam/ql/baseq3/scripts/duel.factories'
+      - './../../mappools/standard/duel/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/duel/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5
+
+  duel3:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27968:27968/udp' # game port
+      - '27968:27968/tcp' # stats port
+      - '28968:28968' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27968
+      - ZMQ_RCON_PORT=27968
+      - ZMQ_STATS_PORT=28968
+      - 'SV_HOSTNAME=[Duel] [#3] by twitch.tv/AktiveHateX'
+      - SV_TAGS=duel, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map bloodrun duel
+      - SV_MAXCLIENTS=16
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/duel/duel.factories:/home/steam/ql/baseq3/scripts/duel.factories'
+      - './../../mappools/standard/duel/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/duel/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5
+
+  duel4:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27969:27969/udp' # game port
+      - '27969:27969/tcp' # stats port
+      - '28969:28969' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27969
+      - ZMQ_RCON_PORT=27969
+      - ZMQ_STATS_PORT=28969
+      - 'SV_HOSTNAME=[Duel] [#4] by twitch.tv/AktiveHateX'
+      - SV_TAGS=duel, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map bloodrun duel
+      - SV_MAXCLIENTS=16
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/duel/duel.factories:/home/steam/ql/baseq3/scripts/duel.factories'
+      - './../../mappools/standard/duel/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/duel/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5

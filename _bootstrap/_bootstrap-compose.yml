@@ -1,0 +1,10 @@
+include:
+  - ./_compose/autoheal-compose.yml
+  - ./_compose/redis-compose.yml
+  - ./_compose/va-compose.yml
+  - ./_compose/ca-compose.yml
+  - ./_compose/duel-compose.yml
+  - ./_compose/tdm-compose.yml
+  - ./_compose/freeze-compose.yml
+  - ./_compose/ffa-compose.yml
+  - ./_compose/ctf-compose.yml

@@ -1,0 +1,105 @@
+services:
+  va1:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27960:27960/udp' # game port
+      - '27960:27960/tcp' # stats port
+      - '28960:28960' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27960
+      - ZMQ_RCON_PORT=27960
+      - ZMQ_STATS_PORT=28960
+      - 'SV_HOSTNAME=[Vampiric LG] [#1] by twitch.tv/AktiveHateX'
+      - SV_TAGS=lg, aim, vampiric, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map thunderstruck vamp_ffa
+      - SV_MAXCLIENTS=20
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/va/va.factories:/home/steam/ql/baseq3/scripts/va.factories'
+      - './../../mappools/standard/va/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/va/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5
+
+  va2:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27961:27961/udp' # game port
+      - '27961:27961/tcp' # stats port
+      - '28961:28961' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27961
+      - ZMQ_RCON_PORT=27961
+      - ZMQ_STATS_PORT=28961
+      - 'SV_HOSTNAME=[Vampiric LG] [#2] by twitch.tv/AktiveHateX'
+      - SV_TAGS=lg, aim, vampiric, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map thunderstruck vamp_ffa
+      - SV_MAXCLIENTS=20
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/va/va.factories:/home/steam/ql/baseq3/scripts/va.factories'
+      - './../../mappools/standard/va/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/va/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5
+
+  va3:
+    image: quakeliveserverstandards/duel
+    restart: always
+    ports:
+      - '27962:27962/udp' # game port
+      - '27962:27962/tcp' # stats port
+      - '28962:28962' # rcon port
+    labels:
+      autoheal-app: true
+    environment:
+      - NET_PORT=27962
+      - ZMQ_RCON_PORT=27962
+      - ZMQ_STATS_PORT=28962
+      - 'SV_HOSTNAME=[Vampiric LG] [#3] by twitch.tv/AktiveHateX'
+      - SV_TAGS=lg, aim, vampiric, moscow, russia, aktivehatex
+      - SERVERSTARTUP=map thunderstruck vamp_ffa
+      - SV_MAXCLIENTS=20
+      - SV_PRIVATECLIENTS=2
+      - SV_PRIVATEPASSWORD=12345678
+    volumes:
+      - './../access.txt:/home/steam/ql/baseq3/access.txt'
+      - './../autoexec.cfg:/home/steam/ql/baseq3/autoexec.cfg'
+      - './../../configs/standard/server.cfg:/home/steam/ql/baseq3/server.cfg'
+      - './../../factories/standard/va/va.factories:/home/steam/ql/baseq3/scripts/va.factories'
+      - './../../mappools/standard/va/mappool.txt:/home/steam/ql/baseq3/mappool.txt'
+      - './../../minqlx-plugins/standard/common:/home/steam/ql/minqlx-plugins'
+      - './../../workshop/standard/va/workshop.txt:/home/steam/ql/baseq3/workshop.txt'
+    depends_on:
+      - redis
+    healthcheck:
+      test: curl -f -LI http://0.0.0.0:9999 || exit 1
+      interval: 5m
+      timeout: 10s
+      retries: 5

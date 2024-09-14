@@ -1,7 +1,6 @@
 ### From standard/duel/workshop.txt
 
-# Gibs
-691078677
+
 
 ### Evolutions
 
