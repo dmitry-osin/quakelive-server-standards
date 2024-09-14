@@ -1,6 +1,6 @@
 services:
   ctf1:
-    image: aktivehatex/quakelive-docker-server:latest
+    image: quakeliveserverstandards/duel
     restart: always
     ports:
       - '27978:27978/udp' # game port
